@@ -150,21 +150,21 @@ class Server:
         incomingSocket.close()
 
   def HTTPSrequest(self, incomingSocket, portNumber, clientAddress, HTTPSurl, clientRequest):
-    #pass
-    proxySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    proxySocket.connect((HTTPSurl, 443))
+    pass
+#     proxySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#     proxySocket.connect((HTTPSurl, 443))
     
-    clientRequest = clientRequest + "Authorization: Basic"
-    print (clientRequest)
-    request = bytes(clientRequest, 'utf-8')
-    proxySocket.send(request)
-    message = proxySocket.recv(4096)
-    print(message)
+#     clientRequest = clientRequest + "Authorization: Basic"
+#     print (clientRequest)
+#     request = bytes(clientRequest, 'utf-8')
+#     proxySocket.send(request)
+#     message = proxySocket.recv(4096)
+#     print(message)
 
-    #incomingSocket.send(b'HTTP/1.1 404 not found\r\n\r\n')
-    incomingSocket.send(b'HTTP/1.1 200 OK')
-    proxySocket.close()
-    incomingSocket.close()
+#     #incomingSocket.send(b'HTTP/1.1 404 not found\r\n\r\n')
+#     incomingSocket.send(b'HTTP/1.1 200 OK')
+#     proxySocket.close()
+#     incomingSocket.close()
 
     
       
