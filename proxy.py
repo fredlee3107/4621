@@ -25,7 +25,7 @@ class Server:
     https = False
     clientRequest = incomingSocket.recv(4096).decode("utf-8")
     if clientRequest != None:
-      print(clientRequest)
+      #print(clientRequest)
       requestLength = len(clientRequest)
       #print(requestLength)
       resp_part = clientRequest.split(' ')[0]
@@ -63,18 +63,19 @@ class Server:
               urlAfterSlash = urlAfterSlash + path
           requestPortNumber = 80
           fileName = re.sub('[^0-9a-zA-Z]', '_', urlPart)
-          #print(fileName)
+          print("this is http")
           self.caching(fileName, incomingSocket, requestPortNumber, clientAddress, urlConnect, urlAfterSlash, https)
         else:
           incomingSocket.send(b'HTTP/1.1 404 not found\r\n\r\n')
+          print("access control working")
       #else here for https!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
       elif (resp_part.find('CONNECT') != -1):
         urlPort = clientRequest.split(' ')[1]
-        print(urlPort)
+        #print(urlPort)
         HTTPSurl = urlPort.split(':')[0]
-        print(HTTPSurl)
+        #print(HTTPSurl)
         HTTPSport = urlPort.split(':')[1]
-        print(HTTPSport)
+        #print(HTTPSport)
         if HTTPSport == str(443):
           print("this is https")
           https = True
@@ -146,6 +147,7 @@ class Server:
         newfile = open(fileName, "wb")
         newfile.write(fullWebsite)
         newfile.close()
+        print("cache done")
         proxySocket.close()
         incomingSocket.close()
 
